@@ -23,7 +23,7 @@ The single source of truth for the phase/step spine is [`00-foundations/00-cycle
 ## Folder map
 
 ```
-CDD-Cycle-Guide/
+Sahel-PCRSS-CDD-Guide/
 ├── CLAUDE.md                         ← you are here
 ├── README.md                         ← human-readable index
 ├── 00-foundations/                   ← cross-cutting concepts (apply to every phase)

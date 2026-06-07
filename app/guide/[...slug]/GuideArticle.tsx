@@ -36,10 +36,10 @@ export function GuideArticle({ slug, title, body }: { slug: string; title: strin
           </Link>
         )}
 
-        <article className="card rise mt-4 overflow-hidden rounded-[1.75rem] p-5 sm:p-8">
+        <article className="card rise relative mt-4 overflow-hidden rounded-[1.75rem] p-5 pt-6 sm:p-8 sm:pt-9">
           {section && (
             <div
-              className={`-mx-5 -mt-5 mb-5 h-1.5 bg-gradient-to-r ${section.color} sm:-mx-8 sm:-mt-8`}
+              className={`absolute inset-x-3 top-2 h-1.5 rounded-full bg-gradient-to-r ${section.color}`}
             />
           )}
           <Markdown baseSlug={slug}>{body}</Markdown>
