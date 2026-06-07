@@ -1,19 +1,21 @@
-import Anthropic from "@anthropic-ai/sdk";
+import OpenAI from "openai";
 import { combinedText } from "@/lib/guide";
 
 export const runtime = "nodejs";
 export const maxDuration = 60;
 
-const MODEL = "claude-sonnet-4-6";
+// OpenAI model. gpt-4o-mini is cheap, fast and handles the ~60k-token guide
+// context well. Swap to "gpt-4o" for the highest answer quality.
+const MODEL = "gpt-4o-mini";
 
 interface InMsg {
   role: "user" | "assistant";
   content: string;
 }
 
-function systemBlocks(lang: "fr" | "en", about?: string) {
+function systemPrompt(lang: "fr" | "en", about?: string) {
   const langName = lang === "fr" ? "French (français)" : "English";
-  const instructions = `You are the friendly assistant inside the "Guide du Facilitateur" app for PCRSS / Sahel Community-Driven Development (DCC/CDD) facilitators.
+  return `You are the friendly assistant inside the "Guide du Facilitateur" app for PCRSS / Sahel Community-Driven Development (DCC/CDD) facilitators.
 
 WHO YOU HELP: facilitators (FC/FT) working in villages in the Sahel (Mali, Liptako-Gourma). Many have limited formal education and read on a small phone over a slow connection.
 
@@ -30,26 +32,17 @@ GROUNDING — VERY IMPORTANT:
 - Do NOT invent procedures, amounts, durations, quorums, thresholds, or committee compositions.
 - If the answer is not in the guide, say so plainly (in the user's language) and point to the closest relevant section instead of guessing.
 - At the very end of your answer, add one short line starting with "📂 " naming the most relevant guide section title(s) you used, so the facilitator can read more. Keep it to one line.
-${about ? `\nThe facilitator is currently reading the section: "${about}". If their question is vague, assume it relates to this section.` : ""}`;
-
-  return [
-    { type: "text" as const, text: instructions },
-    {
-      type: "text" as const,
-      text:
-        "===== BEGIN OFFICIAL GUIDE CONTENT (the only source you may use) =====\n" +
-        combinedText +
-        "\n===== END OFFICIAL GUIDE CONTENT =====",
-      cache_control: { type: "ephemeral" as const },
-    },
-  ];
+${about ? `\nThe facilitator is currently reading the section: "${about}". If their question is vague, assume it relates to this section.\n` : ""}
+===== BEGIN OFFICIAL GUIDE CONTENT (the only source you may use) =====
+${combinedText}
+===== END OFFICIAL GUIDE CONTENT =====`;
 }
 
 export async function POST(req: Request) {
-  const apiKey = process.env.ANTHROPIC_API_KEY;
+  const apiKey = process.env.OPENAI_API_KEY;
   if (!apiKey) {
     return new Response(
-      JSON.stringify({ error: "ANTHROPIC_API_KEY is not configured on the server." }),
+      JSON.stringify({ error: "OPENAI_API_KEY is not configured on the server." }),
       { status: 500, headers: { "content-type": "application/json" } }
     );
   }
@@ -62,31 +55,39 @@ export async function POST(req: Request) {
   }
 
   const lang = body.lang === "en" ? "en" : "fr";
-  const messages = (body.messages || [])
+  const history = (body.messages || [])
     .filter((m) => m && (m.role === "user" || m.role === "assistant") && typeof m.content === "string")
     .slice(-12) // keep last few turns
     .map((m) => ({ role: m.role, content: m.content }));
 
-  if (messages.length === 0) {
+  if (history.length === 0) {
     return new Response(JSON.stringify({ error: "No message" }), { status: 400 });
   }
 
-  const anthropic = new Anthropic({ apiKey });
+  const openai = new OpenAI({ apiKey });
+
+  // The big, static system prompt is sent first so OpenAI's automatic prompt
+  // caching reuses it across requests (cheaper + faster after the first call).
+  const messages = [
+    { role: "system" as const, content: systemPrompt(lang, body.about) },
+    ...history,
+  ];
 
   const encoder = new TextEncoder();
   const stream = new ReadableStream({
     async start(controller) {
       try {
-        const mStream = anthropic.messages.stream({
+        const completion = await openai.chat.completions.create({
           model: MODEL,
           max_tokens: 1024,
-          system: systemBlocks(lang, body.about),
+          temperature: 0.2,
+          stream: true,
           messages,
         });
-        mStream.on("text", (text) => {
-          controller.enqueue(encoder.encode(text));
-        });
-        await mStream.finalMessage();
+        for await (const chunk of completion) {
+          const text = chunk.choices[0]?.delta?.content;
+          if (text) controller.enqueue(encoder.encode(text));
+        }
         controller.close();
       } catch (err) {
         const msg = err instanceof Error ? err.message : "error";

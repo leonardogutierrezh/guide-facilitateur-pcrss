@@ -13,21 +13,21 @@ Ce dépôt contient aussi une **application web bilingue (FR/EN)** pensée pour 
 > This repo also ships a **bilingual (FR/EN) web app** for field facilitators: simple, visual, phone-friendly, with an **AI assistant** that answers strictly from the guide content.
 
 - **Lire le guide / Read the guide** — phases et étapes en grandes cartes illustrées.
-- **Poser une question / Ask a question** — chat IA (Claude) ancré dans les 32 fichiers du guide. L'assistant ne répond que depuis le guide ; il ne devine pas.
+- **Poser une question / Ask a question** — chat IA ancré dans les 32 fichiers du guide. L'assistant ne répond que depuis le guide ; il ne devine pas.
 
 ### Lancer en local / Run locally
 
 ```bash
 npm install
-cp .env.example .env.local      # add your ANTHROPIC_API_KEY
+cp .env.example .env.local      # add your OPENAI_API_KEY
 npm run dev                     # http://localhost:3000
 ```
 
 ### Déployer / Deploy (Vercel)
 
-The app is a Next.js project. Set one environment variable on Vercel — **`ANTHROPIC_API_KEY`** — then deploy. See [`DEPLOY.md`](DEPLOY.md).
+The app is a Next.js project. Set one environment variable on Vercel — **`OPENAI_API_KEY`** — then deploy. See [`DEPLOY.md`](DEPLOY.md).
 
-**Tech:** Next.js (App Router) · React · Tailwind CSS · `@anthropic-ai/sdk` (model `claude-sonnet-4-6`). The full guide (~230 KB) is sent to the model as a **prompt-cached** system context, so answers stay grounded and cheap. Content is bundled at build time by [`scripts/build-content.mjs`](scripts/build-content.mjs).
+**Tech:** Next.js (App Router) · React · Tailwind CSS · `openai` SDK (model `gpt-4o-mini`). The full guide (~230 KB) is sent to the model as the system context — OpenAI **automatically caches** this static prefix, so answers stay grounded and cheap. Content is bundled at build time by [`scripts/build-content.mjs`](scripts/build-content.mjs).
 
 ---
 
