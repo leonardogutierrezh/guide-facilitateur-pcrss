@@ -4,6 +4,20 @@ import { resolveProvider, streamChat, type ChatMessage } from "@/lib/ai";
 export const runtime = "nodejs";
 export const maxDuration = 60;
 
+// Lightweight status check so the UI can show a clean "setup needed" state
+// instead of letting a request fail. Never exposes the key itself.
+export async function GET() {
+  const resolved = resolveProvider();
+  const configured = !("error" in resolved);
+  return new Response(
+    JSON.stringify({
+      configured,
+      provider: configured ? resolved.provider : null,
+    }),
+    { headers: { "content-type": "application/json", "cache-control": "no-store" } }
+  );
+}
+
 function systemPrompt(lang: "fr" | "en", about?: string) {
   const langName = lang === "fr" ? "French (français)" : "English";
   return `You are the friendly assistant inside the "Guide du Facilitateur" app for PCRSS / Sahel Community-Driven Development (DCC/CDD) facilitators.

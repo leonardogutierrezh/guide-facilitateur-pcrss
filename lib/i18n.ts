@@ -60,6 +60,19 @@ export const UI = {
   step: { fr: "étape", en: "step" },
   newChat: { fr: "Nouvelle question", en: "New question" },
   langName: { fr: "Français", en: "English" },
+  notConfiguredTitle: {
+    fr: "Assistant pas encore connecté",
+    en: "Assistant not connected yet",
+  },
+  notConfiguredBody: {
+    fr: "Le chat IA n'est pas configuré sur ce site. Un administrateur doit ajouter une clé API (AI_PROVIDER + clé) puis redéployer. En attendant, vous pouvez lire tout le guide.",
+    en: "The AI chat is not set up on this site. An administrator needs to add an API key (AI_PROVIDER + key) and redeploy. In the meantime, you can read the whole guide.",
+  },
+  notConfiguredCta: { fr: "📖 Lire le guide", en: "📖 Read the guide" },
+  composerDisabled: {
+    fr: "Chat indisponible — configuration manquante",
+    en: "Chat unavailable — setup needed",
+  },
 };
 
 export type UIKey = keyof typeof UI;
