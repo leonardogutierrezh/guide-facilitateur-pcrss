@@ -13,6 +13,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@anthropic-ai/sdk": "^0.40.1",
     "eslint-config-next": "^15.5.19",
     "gray-matter": "^4.0.3",
     "next": "^15.5.19",

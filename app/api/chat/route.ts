@@ -1,17 +1,8 @@
-import OpenAI from "openai";
 import { combinedText } from "@/lib/guide";
+import { resolveProvider, streamChat, type ChatMessage } from "@/lib/ai";
 
 export const runtime = "nodejs";
 export const maxDuration = 60;
-
-// OpenAI model. gpt-4o-mini is cheap, fast and handles the ~60k-token guide
-// context well. Swap to "gpt-4o" for the highest answer quality.
-const MODEL = "gpt-4o-mini";
-
-interface InMsg {
-  role: "user" | "assistant";
-  content: string;
-}
 
 function systemPrompt(lang: "fr" | "en", about?: string) {
   const langName = lang === "fr" ? "French (français)" : "English";
@@ -39,15 +30,15 @@ ${combinedText}
 }
 
 export async function POST(req: Request) {
-  const apiKey = process.env.OPENAI_API_KEY;
-  if (!apiKey) {
-    return new Response(
-      JSON.stringify({ error: "OPENAI_API_KEY is not configured on the server." }),
-      { status: 500, headers: { "content-type": "application/json" } }
-    );
+  const resolved = resolveProvider();
+  if ("error" in resolved) {
+    return new Response(JSON.stringify({ error: resolved.error }), {
+      status: 500,
+      headers: { "content-type": "application/json" },
+    });
   }
 
-  let body: { messages?: InMsg[]; lang?: "fr" | "en"; about?: string };
+  let body: { messages?: ChatMessage[]; lang?: "fr" | "en"; about?: string };
   try {
     body = await req.json();
   } catch {
@@ -55,39 +46,23 @@ export async function POST(req: Request) {
   }
 
   const lang = body.lang === "en" ? "en" : "fr";
-  const history = (body.messages || [])
+  const history: ChatMessage[] = (body.messages || [])
     .filter((m) => m && (m.role === "user" || m.role === "assistant") && typeof m.content === "string")
-    .slice(-12) // keep last few turns
+    .slice(-12)
     .map((m) => ({ role: m.role, content: m.content }));
 
   if (history.length === 0) {
     return new Response(JSON.stringify({ error: "No message" }), { status: 400 });
   }
 
-  const openai = new OpenAI({ apiKey });
-
-  // The big, static system prompt is sent first so OpenAI's automatic prompt
-  // caching reuses it across requests (cheaper + faster after the first call).
-  const messages = [
-    { role: "system" as const, content: systemPrompt(lang, body.about) },
-    ...history,
-  ];
-
+  const system = systemPrompt(lang, body.about);
   const encoder = new TextEncoder();
   const stream = new ReadableStream({
     async start(controller) {
       try {
-        const completion = await openai.chat.completions.create({
-          model: MODEL,
-          max_tokens: 1024,
-          temperature: 0.2,
-          stream: true,
-          messages,
+        await streamChat(resolved, system, history, (text) => {
+          controller.enqueue(encoder.encode(text));
         });
-        for await (const chunk of completion) {
-          const text = chunk.choices[0]?.delta?.content;
-          if (text) controller.enqueue(encoder.encode(text));
-        }
         controller.close();
       } catch (err) {
         const msg = err instanceof Error ? err.message : "error";

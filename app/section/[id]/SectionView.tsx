@@ -15,32 +15,45 @@ export function SectionView({ id }: { id: string }) {
     <main className="min-h-screen pb-28">
       <TopBar showBack />
       <div className="mx-auto max-w-3xl px-4 pt-5">
-        <div className={`rounded-3xl bg-gradient-to-br ${section.color} p-5 text-white shadow-lg`}>
-          <div className="text-5xl">{section.emoji}</div>
-          <h1 className="mt-2 text-2xl font-extrabold">{sectionLabel(section, lang)}</h1>
+        <div
+          className={`sheen rise rounded-[1.75rem] bg-gradient-to-br ${section.color} p-6 text-white shadow-[0_18px_44px_-18px_rgba(44,36,32,0.65)]`}
+        >
+          <div className="flex h-16 w-16 items-center justify-center rounded-3xl bg-white/20 text-4xl backdrop-blur">
+            {section.emoji}
+          </div>
+          <h1 className="mt-3 text-2xl font-extrabold tracking-tight">{sectionLabel(section, lang)}</h1>
           <p className="mt-1 text-white/90">{sectionSub(section, lang)}</p>
         </div>
 
-        <ol className="mt-5 space-y-3">
+        <ol className="mt-5 space-y-2.5">
           {section.items.map((item, idx) => (
-            <li key={item.slug}>
+            <li key={item.slug} className={`rise rise-${Math.min(idx + 1, 6)}`}>
               <Link
                 href={`/guide/${item.slug}`}
-                className="flex items-center gap-3 rounded-2xl bg-white p-4 shadow-sm ring-1 ring-black/5 transition active:scale-[0.99]"
+                className="card pressable group flex items-center gap-3.5 rounded-2xl p-3.5"
               >
-                <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-sand-100 text-2xl">
+                <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-gradient-to-br from-sand-100 to-sand-200 text-2xl shadow-inner">
                   {item.emoji}
                 </span>
                 <span className="min-w-0 flex-1">
-                  <span className="block text-base font-bold text-gray-800">{itemLabel(item, lang)}</span>
+                  <span className="flex items-center gap-1.5">
+                    <span className="text-xs font-bold text-clay-500/70">
+                      {String(idx + 1).padStart(2, "0")}
+                    </span>
+                  </span>
+                  <span className="block text-[1.02rem] font-bold leading-tight text-[var(--ink)]">
+                    {itemLabel(item, lang)}
+                  </span>
                 </span>
-                <span className="text-2xl text-gray-300">›</span>
+                <span className="flex h-8 w-8 items-center justify-center rounded-full bg-clay-50 text-lg font-bold text-clay-500 transition group-hover:bg-clay-100 group-hover:translate-x-0.5">
+                  ›
+                </span>
               </Link>
             </li>
           ))}
         </ol>
       </div>
-      <AskButton />
+      <AskButton context={sectionLabel(section, lang)} />
     </main>
   );
 }

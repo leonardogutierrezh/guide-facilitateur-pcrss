@@ -25,9 +25,9 @@ npm run dev                     # http://localhost:3000
 
 ### Déployer / Deploy (Vercel)
 
-The app is a Next.js project. Set one environment variable on Vercel — **`OPENAI_API_KEY`** — then deploy. See [`DEPLOY.md`](DEPLOY.md).
+The app is a Next.js project. Choose your AI provider with **`AI_PROVIDER`** (`anthropic` or `openai`) and set the matching API key on Vercel, then deploy. See [`DEPLOY.md`](DEPLOY.md).
 
-**Tech:** Next.js (App Router) · React · Tailwind CSS · `openai` SDK (model `gpt-4o-mini`). The full guide (~230 KB) is sent to the model as the system context — OpenAI **automatically caches** this static prefix, so answers stay grounded and cheap. Content is bundled at build time by [`scripts/build-content.mjs`](scripts/build-content.mjs).
+**Tech:** Next.js (App Router) · React · Tailwind CSS · pluggable AI provider (`@anthropic-ai/sdk` → `claude-sonnet-4-6`, or `openai` → `gpt-4o-mini`; both default-overridable). The full guide (~230 KB) is sent to the model as the system context and **prompt-cached** by the provider, so answers stay grounded and cheap. Content is bundled at build time by [`scripts/build-content.mjs`](scripts/build-content.mjs).
 
 ---
 

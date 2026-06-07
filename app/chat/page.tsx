@@ -15,16 +15,18 @@ function ChatScreen() {
 
   return (
     <main className="flex h-[100dvh] flex-col">
-      <header className="z-30 flex items-center justify-between gap-2 border-b border-sand-200 bg-sand-50/90 px-4 py-3 backdrop-blur">
+      <header className="z-30 flex items-center justify-between gap-2 border-b border-black/[0.05] bg-white/55 px-4 py-3 backdrop-blur-xl">
         <Link
           href="/"
-          className="flex items-center gap-1.5 rounded-full bg-white px-3 py-1.5 text-sm font-bold text-gray-700 shadow-sm ring-1 ring-black/5"
+          className="flex items-center gap-1.5 rounded-full bg-white/80 px-3 py-1.5 text-sm font-bold text-gray-700 shadow-sm ring-1 ring-black/[0.06] backdrop-blur transition active:scale-95"
         >
           🏠 {t("home", lang)}
         </Link>
-        <div className="flex items-center gap-2 font-extrabold text-clay-700">
-          <span className="text-xl">💬</span>
-          <span>{lang === "fr" ? "Assistant" : "Assistant"}</span>
+        <div className="flex items-center gap-2 font-extrabold tracking-tight text-clay-700">
+          <span className="flex h-8 w-8 items-center justify-center rounded-xl bg-gradient-to-br from-clay-500 to-clay-700 text-base shadow-sm">
+            💬
+          </span>
+          <span>Assistant</span>
         </div>
         <LangToggle />
       </header>

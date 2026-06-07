@@ -1,52 +1,58 @@
 # Deploying the Facilitator Guide
 
-The app is a standard **Next.js** project. The only secret it needs is your
-OpenAI API key.
+The app is a standard **Next.js** project. It can use **Anthropic (Claude)** or
+**OpenAI** for the chat — you choose with an environment variable.
 
-## 1. Get an OpenAI API key
+## 1. Get an API key
 
-1. Go to <https://platform.openai.com/api-keys>.
-2. Create an API key (it looks like `sk-...`).
-3. Keep it secret — never commit it to git.
+- **Anthropic:** <https://console.anthropic.com/> → key looks like `sk-ant-...`
+- **OpenAI:** <https://platform.openai.com/api-keys> → key looks like `sk-...`
 
-## 2. Deploy on Vercel (recommended)
+Keep keys secret — never commit them to git.
 
-### Option A — from the dashboard
+## 2. Environment variables
+
+| Variable | Required | Purpose |
+|---|---|---|
+| `AI_PROVIDER` | recommended | `anthropic` or `openai`. If empty, the app auto-detects from whichever key is set. |
+| `ANTHROPIC_API_KEY` | if using Anthropic | Your Claude key. |
+| `OPENAI_API_KEY` | if using OpenAI | Your OpenAI key. |
+| `ANTHROPIC_MODEL` | optional | Override the Claude model (default `claude-sonnet-4-6`). |
+| `OPENAI_MODEL` | optional | Override the OpenAI model (default `gpt-4o-mini`). |
+
+You can set **both** keys and just flip `AI_PROVIDER` to switch providers — then
+redeploy. The app only calls the provider named in `AI_PROVIDER`.
+
+## 3. Deploy on Vercel
+
+### Option A — dashboard
 
 1. Push this repo to GitHub (already done if you cloned it from there).
-2. Go to <https://vercel.com/new> and **import** the repository.
-3. Framework preset: **Next.js** (auto-detected). No build settings to change —
-   `npm run build` already regenerates the content bundle via the `prebuild` hook.
-4. Under **Environment Variables**, add:
-   - **Name:** `OPENAI_API_KEY`
-   - **Value:** your `sk-...` key
-   - Apply to **Production**, **Preview**, and **Development**.
-5. Click **Deploy**.
+2. <https://vercel.com/new> → **import** the repository (Next.js auto-detected).
+3. **Settings → Environment Variables** → add `AI_PROVIDER` and the matching
+   `*_API_KEY` for **Production** (and Preview/Development if you want).
+4. Click **Deploy**.
 
-### Option B — from the CLI
+### Option B — CLI
 
 ```bash
-vercel                       # link/create the project
-vercel env add OPENAI_API_KEY production    # paste the key when prompted
-vercel env add OPENAI_API_KEY preview
-vercel --prod                # deploy to production
+vercel                                    # link/create the project
+vercel env add AI_PROVIDER production     # type: anthropic  (or openai)
+vercel env add ANTHROPIC_API_KEY production   # or OPENAI_API_KEY
+vercel --prod                             # deploy to production
 ```
 
-## 3. Verify
+## 4. Verify
 
-- Open the deployment URL.
-- Tap **💬 Poser une question / Ask a question**.
-- Ask: *"Quel est le quorum d'une assemblée générale ?"* — you should get
-  *50% des ménages, 30% de femmes*, with a `📂` source line.
+- Open the deployment URL → **💬 Poser une question / Ask a question**.
+- Ask *"Quel est le quorum d'une assemblée générale ?"* — expect
+  *50% des ménages, 30% de femmes* with a `📂` source line.
 
-If the chat returns an error, the key is almost always missing or misspelled in
-the Vercel project settings — re-check **Settings → Environment Variables** and
-redeploy.
+If the chat returns an error, the provider/key pair is usually mismatched — make
+sure `AI_PROVIDER` matches the key you set, then redeploy.
 
-## Model & cost
+## Switching or changing the model
 
-- Model: `gpt-4o-mini` (cheap and fast; swap to `gpt-4o` for top quality).
-- The whole guide (~230 KB ≈ 60k tokens) is sent as the **system prompt**.
-  OpenAI **automatically caches** this static prefix, so after the first request
-  each question is cheaper and faster.
-- To change the model, edit `MODEL` in [`app/api/chat/route.ts`](app/api/chat/route.ts).
+- Switch provider: change `AI_PROVIDER`, ensure that provider's key exists, redeploy.
+- Change model: set `ANTHROPIC_MODEL` / `OPENAI_MODEL` (e.g. `gpt-4o` for top
+  OpenAI quality), redeploy. Defaults live in [`lib/ai.ts`](lib/ai.ts).

@@ -29,14 +29,19 @@ export function GuideArticle({ slug, title, body }: { slug: string; title: strin
         {section && (
           <Link
             href={`/section/${section.id}`}
-            className="inline-flex items-center gap-1.5 rounded-full bg-white px-3 py-1.5 text-sm font-bold text-clay-700 shadow-sm ring-1 ring-black/5"
+            className="inline-flex items-center gap-1.5 rounded-full bg-white/80 px-3.5 py-1.5 text-sm font-bold text-clay-700 shadow-sm ring-1 ring-black/[0.06] backdrop-blur transition active:scale-95"
           >
             <span>{section.emoji}</span>
             <span>{lang === "fr" ? section.fr : section.en}</span>
           </Link>
         )}
 
-        <article className="mt-4 rounded-3xl bg-white p-5 shadow-sm ring-1 ring-black/5 sm:p-7">
+        <article className="card rise mt-4 overflow-hidden rounded-[1.75rem] p-5 sm:p-8">
+          {section && (
+            <div
+              className={`-mx-5 -mt-5 mb-5 h-1.5 bg-gradient-to-r ${section.color} sm:-mx-8 sm:-mt-8`}
+            />
+          )}
           <Markdown baseSlug={slug}>{body}</Markdown>
         </article>
 
@@ -45,10 +50,10 @@ export function GuideArticle({ slug, title, body }: { slug: string; title: strin
           {prev ? (
             <Link
               href={`/guide/${prev.slug}`}
-              className="rounded-2xl bg-white p-3 text-left shadow-sm ring-1 ring-black/5"
+              className="card pressable rounded-2xl p-3.5 text-left"
             >
-              <div className="text-xs font-semibold text-gray-400">‹ {t("back", lang)}</div>
-              <div className="truncate text-sm font-bold text-gray-700">
+              <div className="text-xs font-bold text-clay-500/70">‹ {t("back", lang)}</div>
+              <div className="mt-0.5 truncate text-sm font-bold text-[var(--ink)]">
                 {prev.emoji} {itemLabel(prev, lang)}
               </div>
             </Link>
@@ -58,10 +63,10 @@ export function GuideArticle({ slug, title, body }: { slug: string; title: strin
           {next ? (
             <Link
               href={`/guide/${next.slug}`}
-              className="rounded-2xl bg-white p-3 text-right shadow-sm ring-1 ring-black/5"
+              className="card pressable rounded-2xl p-3.5 text-right"
             >
-              <div className="text-xs font-semibold text-gray-400">{lang === "fr" ? "Suivant" : "Next"} ›</div>
-              <div className="truncate text-sm font-bold text-gray-700">
+              <div className="text-xs font-bold text-clay-500/70">{lang === "fr" ? "Suivant" : "Next"} ›</div>
+              <div className="mt-0.5 truncate text-sm font-bold text-[var(--ink)]">
                 {next.emoji} {itemLabel(next, lang)}
               </div>
             </Link>

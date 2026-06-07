@@ -71,15 +71,17 @@ export function Chat({ about }: { about?: string }) {
   return (
     <div className="flex h-full flex-col">
       {/* Messages */}
-      <div ref={scrollRef} className="flex-1 overflow-y-auto px-4 py-4">
+      <div ref={scrollRef} className="flex-1 overflow-y-auto px-4 py-5">
         <div className="mx-auto max-w-3xl space-y-4">
           {/* Greeting */}
-          <div className="flex gap-2">
-            <div className="text-2xl">🤝</div>
-            <div className="max-w-[85%] rounded-2xl rounded-tl-sm bg-white p-3 shadow-sm ring-1 ring-black/5">
-              <p className="text-gray-700">{t("chatHello", lang)}</p>
+          <div className="flex gap-2.5">
+            <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-2xl bg-gradient-to-br from-clay-500 to-clay-700 text-lg shadow-sm">
+              🤝
+            </div>
+            <div className="card max-w-[86%] rounded-2xl rounded-tl-md p-3.5">
+              <p className="text-[var(--ink)]">{t("chatHello", lang)}</p>
               {about && (
-                <p className="mt-2 text-sm font-semibold text-clay-600">
+                <p className="mt-2 inline-flex items-center gap-1 rounded-full bg-clay-50 px-2.5 py-1 text-sm font-bold text-clay-600">
                   📂 {about}
                 </p>
               )}
@@ -88,12 +90,12 @@ export function Chat({ about }: { about?: string }) {
 
           {/* Suggestions (only before first message) */}
           {empty && (
-            <div className="flex flex-wrap gap-2 pt-1">
-              {suggestions.map((s) => (
+            <div className="flex flex-wrap gap-2 pl-11 pt-1">
+              {suggestions.map((s, i) => (
                 <button
                   key={s}
                   onClick={() => send(s)}
-                  className="rounded-full border border-clay-500/40 bg-white px-3 py-2 text-left text-sm font-semibold text-clay-700 shadow-sm transition active:scale-95"
+                  className={`chip pressable rise rise-${Math.min(i + 1, 6)} text-left`}
                 >
                   {s}
                 </button>
@@ -105,14 +107,16 @@ export function Chat({ about }: { about?: string }) {
           {messages.map((m, i) =>
             m.role === "user" ? (
               <div key={i} className="flex justify-end">
-                <div className="max-w-[85%] rounded-2xl rounded-tr-sm bg-clay-600 p-3 text-white shadow-sm">
+                <div className="max-w-[86%] rounded-2xl rounded-tr-md bg-gradient-to-br from-clay-500 to-clay-700 p-3.5 text-white shadow-[0_10px_24px_-12px_rgba(177,74,31,0.7)]">
                   {m.content}
                 </div>
               </div>
             ) : (
-              <div key={i} className="flex gap-2">
-                <div className="text-2xl">🤝</div>
-                <div className="max-w-[85%] rounded-2xl rounded-tl-sm bg-white p-3 shadow-sm ring-1 ring-black/5">
+              <div key={i} className="flex gap-2.5">
+                <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-2xl bg-gradient-to-br from-clay-500 to-clay-700 text-lg shadow-sm">
+                  🤝
+                </div>
+                <div className="card max-w-[86%] rounded-2xl rounded-tl-md p-3.5">
                   {m.content ? (
                     <Markdown className="chat-md">{m.content}</Markdown>
                   ) : (
@@ -130,8 +134,8 @@ export function Chat({ about }: { about?: string }) {
       </div>
 
       {/* Composer */}
-      <div className="border-t border-sand-200 bg-sand-50/95 px-3 py-3 backdrop-blur">
-        <div className="mx-auto flex max-w-3xl items-end gap-2">
+      <div className="border-t border-black/[0.05] bg-white/60 px-3 py-3 backdrop-blur-xl">
+        <div className="mx-auto flex max-w-3xl items-end gap-2 rounded-[1.4rem] bg-white p-1.5 shadow-[0_8px_26px_-14px_rgba(44,36,32,0.4)] ring-1 ring-black/[0.06] focus-within:ring-2 focus-within:ring-clay-500/40">
           <textarea
             ref={taRef}
             value={input}
@@ -144,13 +148,13 @@ export function Chat({ about }: { about?: string }) {
             }}
             rows={1}
             placeholder={t("askPlaceholder", lang)}
-            className="max-h-32 flex-1 resize-none rounded-2xl border-2 border-sand-200 bg-white px-4 py-3 text-base outline-none focus:border-clay-500"
+            className="max-h-32 flex-1 resize-none bg-transparent px-3 py-2.5 text-base outline-none placeholder:text-[var(--ink-soft)]/60"
           />
           <button
             onClick={() => send(input)}
             disabled={busy || !input.trim()}
             aria-label={t("ask", lang)}
-            className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-clay-600 text-2xl text-white shadow-md transition active:scale-90 disabled:opacity-40"
+            className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-clay-500 to-clay-700 text-xl text-white shadow-md transition hover:-translate-y-0.5 active:scale-90 disabled:translate-y-0 disabled:opacity-35"
           >
             ➤
           </button>

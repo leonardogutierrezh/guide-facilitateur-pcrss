@@ -1,6 +1,14 @@
 import type { Metadata, Viewport } from "next";
+import { Plus_Jakarta_Sans } from "next/font/google";
 import "./globals.css";
 import { LanguageProvider } from "@/components/LanguageProvider";
+
+const jakarta = Plus_Jakarta_Sans({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700", "800"],
+  variable: "--font-jakarta",
+  display: "swap",
+});
 
 export const metadata: Metadata = {
   title: "Guide du Facilitateur — PCRSS / DCC",
@@ -11,12 +19,12 @@ export const metadata: Metadata = {
 export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
-  themeColor: "#9a3412",
+  themeColor: "#b14a1f",
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="fr">
+    <html lang="fr" className={jakarta.variable}>
       <body className="min-h-screen antialiased">
         <LanguageProvider>{children}</LanguageProvider>
       </body>

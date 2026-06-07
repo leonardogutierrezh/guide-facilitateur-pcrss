@@ -5,12 +5,18 @@ import { useLang } from "./LanguageProvider";
 export function LangToggle() {
   const { lang, setLang } = useLang();
   return (
-    <div className="inline-flex rounded-full bg-white/80 p-1 shadow-sm ring-1 ring-black/5">
+    <div className="relative inline-flex items-center rounded-full bg-white/70 p-1 shadow-sm ring-1 ring-black/[0.06] backdrop-blur">
+      {/* sliding pill */}
+      <span
+        aria-hidden
+        className="absolute top-1 bottom-1 w-[calc(50%-0.25rem)] rounded-full bg-gradient-to-br from-clay-500 to-clay-700 shadow-sm transition-transform duration-300 ease-out"
+        style={{ transform: lang === "fr" ? "translateX(0)" : "translateX(100%)" }}
+      />
       <button
         onClick={() => setLang("fr")}
         aria-pressed={lang === "fr"}
-        className={`rounded-full px-3 py-1 text-sm font-bold transition ${
-          lang === "fr" ? "bg-clay-600 text-white" : "text-gray-600"
+        className={`relative z-10 rounded-full px-3 py-1 text-sm font-bold transition ${
+          lang === "fr" ? "text-white" : "text-gray-500"
         }`}
       >
         🇫🇷 FR
@@ -18,8 +24,8 @@ export function LangToggle() {
       <button
         onClick={() => setLang("en")}
         aria-pressed={lang === "en"}
-        className={`rounded-full px-3 py-1 text-sm font-bold transition ${
-          lang === "en" ? "bg-clay-600 text-white" : "text-gray-600"
+        className={`relative z-10 rounded-full px-3 py-1 text-sm font-bold transition ${
+          lang === "en" ? "text-white" : "text-gray-500"
         }`}
       >
         🇬🇧 EN
