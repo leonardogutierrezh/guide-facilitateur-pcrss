@@ -52,4 +52,4 @@ Paramètres de l'application ; Assistance et Support (questions sur la procédur
 - Priorités de développement du village
 
 ## Cross-cutting
-Saisie/synchronisation et SIG : voir [Suivi & rapports](../phase-1-planning/08-suivi-rapports.md). Application des plaintes : voir [App eMGP](app-emgp.md).
+Saisie/synchronisation et SIG : voir [Suivi & rapports](../transversal/suivi-rapports/README.md). Application des plaintes : voir [App eMGP](app-emgp.md).

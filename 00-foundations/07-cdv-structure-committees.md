@@ -45,7 +45,7 @@ Election is by **secret ballot** for B-CDVFQ and CC; CGP members are designated 
 ### Règles et critères de sélection des membres du CDV
 Tous bénévoles (personne n'est payé ; formation + visites d'échanges possibles ; indemnités de déplacement liées à la fonction). Haut degré d'intégrité. ≥ 18 ans. Au moins un membre par organe sait lire et écrire ; le trésorier sait lire/écrire ou est aidé par le secrétaire. Les facilitateurs et secrétaires des CGP parlent français et la langue prédominante et savent lire/écrire. Quorum des réunions des membres du CDV : 2/3. ≥ 30% de femmes. Démission → remplacement par vote du village. Remplacement possible en cas d'inconduite ou de non-performance (attestée par les villageois). Tous comprennent, signent et suivent le Code de bonne conduite.
 
-> Processus électoral détaillé (bureau de vote, scrutin secret, candidatures, vote, dépouillement, validation) : voir [AG2 — mise en place du CDV](../phase-1-planning/03-ag2-mise-en-place-cdv.md).
+> Processus électoral détaillé (bureau de vote, scrutin secret, candidatures, vote, dépouillement, validation) : voir [AG2 — mise en place du CDV](../phase-2-mobilisation-communautaire/activite-1-mise-en-place-cdv-ag2/README.md).
 
 ## Cross-cutting
-Exigences de genre dans la composition : voir [Genre & inclusion](03-gender-social-inclusion.md). Code de bonne conduite : voir [AG2](../phase-1-planning/03-ag2-mise-en-place-cdv.md) et [Gestion E&S](../phase-2-preparation-implementation/04-gestion-environnementale-sociale.md).
+Exigences de genre dans la composition : voir [Genre & inclusion](03-gender-social-inclusion.md). Code de bonne conduite : voir [AG2](../phase-2-mobilisation-communautaire/activite-1-mise-en-place-cdv-ag2/README.md) et [Gestion E&S](../phase-5-mise-en-oeuvre/activite-2-gestion-environnementale-sociale/README.md).

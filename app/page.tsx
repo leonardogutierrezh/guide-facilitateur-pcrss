@@ -81,7 +81,12 @@ export default function HomePage() {
                 </div>
                 <div className="mt-0.5 text-sm leading-snug text-white/90">{sectionSub(s, lang)}</div>
                 <div className="mt-1.5 inline-flex items-center gap-1 rounded-full bg-white/20 px-2 py-0.5 text-xs font-bold text-white/95 backdrop-blur">
-                  {s.items.length} {s.items.length > 1 ? t("steps", lang) : t("step", lang)}
+                  {s.items.length}{" "}
+                  {s.kind === "phase"
+                    ? lang === "fr"
+                      ? s.items.length > 1 ? "activités" : "activité"
+                      : s.items.length > 1 ? "activities" : "activity"
+                    : s.items.length > 1 ? t("steps", lang) : t("step", lang)}
                 </div>
               </div>
             </Link>

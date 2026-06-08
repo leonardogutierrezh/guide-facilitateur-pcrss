@@ -12,22 +12,22 @@ All community documents are filed by **category** and numbered, kept in the CDVF
 ## OC — Outils d'organisation de la Communauté
 | Code | Document | Used in |
 |---|---|---|
-| OC1 | PV de l'Assemblée Générale de création du CDVFQ | [AG2 — mise en place du CDV](../phase-1-planning/03-ag2-mise-en-place-cdv.md) |
+| OC1 | PV de l'Assemblée Générale de création du CDVFQ | [AG2 — mise en place du CDV](../phase-2-mobilisation-communautaire/activite-1-mise-en-place-cdv-ag2/README.md) |
 | OC2 | Acte de reconnaissance du CDVFQ par l'Autorité Préfectorale | AG2 / création |
 
 ## OP — Outils de planification
 | Code | Document | Used in |
 |---|---|---|
-| OP1 | Plan de Développement Villageois/Quartier/Fraction (PDC) | [AG4 — PDC](../phase-1-planning/06-ag4-pdc.md) |
-| OP2 | Dossier de Sous-Projet Communautaire (DSPC) approuvé par le Comité National d'Approbation | [Préparation du sous-projet](../phase-2-preparation-implementation/01-preparation-sous-projet.md) |
-| OP3 | Rapport d'exécution du sous-projet (1ère tranche de la subvention) | [Mise en œuvre](../phase-2-preparation-implementation/03-mise-en-oeuvre.md) |
-| OP4 | Rapport d'achèvement (après consommation de la 2ème tranche) | [Clôture](../phase-3-closure-sustainability/01-cloture-sous-projets.md) |
-| OP5 | Rapport des résultats de l'audit social | [Audit social](../phase-3-closure-sustainability/04-audit-social.md) |
+| OP1 | Plan de Développement Villageois/Quartier/Fraction (PDC) | [AG4 — PDC](../phase-3-planification-villageoise/activite-2-pdc-ag4/README.md) |
+| OP2 | Dossier de Sous-Projet Communautaire (DSPC) approuvé par le Comité National d'Approbation | [Préparation du sous-projet](../phase-4-preparation-sous-projets/activite-1-preparation-sous-projet/README.md) |
+| OP3 | Rapport d'exécution du sous-projet (1ère tranche de la subvention) | [Mise en œuvre](../phase-5-mise-en-oeuvre/activite-1-mise-en-oeuvre/README.md) |
+| OP4 | Rapport d'achèvement (après consommation de la 2ème tranche) | [Clôture](../phase-6-cloture/activite-1-cloture-sous-projets/README.md) |
+| OP5 | Rapport des résultats de l'audit social | [Audit social](../phase-6-cloture/activite-3-audit-social/README.md) |
 
 ## F — Financier
 | Code | Document | Used in |
 |---|---|---|
-| F1 | Accord de Subvention Communautaire et de Délégation de Maîtrise d'Ouvrage (convention tripartite Communauté–Commune–PCRSS) | [Gestion financière](../phase-2-preparation-implementation/05-gestion-financiere.md) |
+| F1 | Accord de Subvention Communautaire et de Délégation de Maîtrise d'Ouvrage (convention tripartite Communauté–Commune–PCRSS) | [Gestion financière](../phase-5-mise-en-oeuvre/activite-3-gestion-financiere/README.md) |
 | F2 | Canevas de lettre de demande de fond | Gestion financière |
 | F3 | Modèle de lettre de transmission de justificatif de paiement d'une tranche | Gestion financière |
 | F4 | Fiche de suivi financier | Gestion financière |
@@ -45,7 +45,7 @@ All community documents are filed by **category** and numbered, kept in the CDVF
 | F16 | Registre des dépenses administratives | Gestion financière |
 | F17 | Rapport financier (semestriel / final) du sous-projet | Gestion financière |
 | F18 | Factures | Gestion financière |
-| F19 | Rapport financier d'achèvement d'un sous-projet | [Clôture](../phase-3-closure-sustainability/01-cloture-sous-projets.md) |
+| F19 | Rapport financier d'achèvement d'un sous-projet | [Clôture](../phase-6-cloture/activite-1-cloture-sous-projets/README.md) |
 | F20 | Rapport financier d'achèvement du cycle d'investissement | Clôture |
 
 ## P — Passation des marchés (procurement)
@@ -71,7 +71,7 @@ All community documents are filed by **category** and numbered, kept in the CDVF
 | P18 | Ordre de service |
 | P19 | PV réception y compris les pièces de paiement |
 
-→ Détail du processus : [Passation des marchés](../phase-2-preparation-implementation/02-passation-marches.md).
+→ Détail du processus : [Passation des marchés](../phase-4-preparation-sous-projets/activite-2-passation-marches/README.md).
 
 ## T — Travaux et Suivi (works & monitoring)
 | Code | Document |
@@ -94,7 +94,7 @@ All community documents are filed by **category** and numbered, kept in the CDVF
 | T16 | Plan d'Entretien et de Maintenance (PEM) |
 | T17 | Ordre de service d'arrêt de service |
 
-→ Détail : [Mise en œuvre](../phase-2-preparation-implementation/03-mise-en-oeuvre.md), [Clôture](../phase-3-closure-sustainability/01-cloture-sous-projets.md), [Entretien & maintenance](../phase-3-closure-sustainability/05-entretien-maintenance.md).
+→ Détail : [Mise en œuvre](../phase-5-mise-en-oeuvre/activite-1-mise-en-oeuvre/README.md), [Clôture](../phase-6-cloture/activite-1-cloture-sous-projets/README.md), [Entretien & maintenance](../phase-6-cloture/activite-4-entretien-maintenance/README.md).
 
 ## ES — Sauvegarde environnementale et sociale
 | Code | Document |
@@ -109,7 +109,7 @@ All community documents are filed by **category** and numbered, kept in the CDVF
 | ES8 | PV de la mise en place du comité de gestion des plaintes |
 | ES9 | Fiche d'enregistrement de la plainte |
 
-→ Détail : [Gestion E&S](../phase-2-preparation-implementation/04-gestion-environnementale-sociale.md), [MGP](../00-foundations/05-grievance-mechanism-mgp.md).
+→ Détail : [Gestion E&S](../phase-5-mise-en-oeuvre/activite-2-gestion-environnementale-sociale/README.md), [MGP](../00-foundations/05-grievance-mechanism-mgp.md).
 
 ---
 
@@ -149,4 +149,4 @@ Colonnes : Activités · Période/Fréquence · Les intrants · Les coûts · St
 | Application MGP (eMGP) | Enregistrement et suivi des plaintes | FC/FT |
 | GEMS | Suivi des activités, collecte des données, respect des normes techniques | FC/FT |
 
-→ Voir [App DCC](../tools-apps/app-dcc.md), [App eMGP](../tools-apps/app-emgp.md), et [Suivi & rapports](../phase-1-planning/08-suivi-rapports.md).
+→ Voir [App DCC](../tools-apps/app-dcc.md), [App eMGP](../tools-apps/app-emgp.md), et [Suivi & rapports](../transversal/suivi-rapports/README.md).

@@ -8,7 +8,9 @@ It is **not** a rewrite. The substance is faithful to the original. French is th
 
 ## What this models
 
-The PCRSS community investment cycle has **6 phases** and **14 steps** (plus a preparatory Phase 0). The three source guides map onto it like this:
+The PCRSS community investment cycle has **6 phases** and **14 steps** (plus a preparatory Phase 0).
+
+**This guide is organized by the cycle — Phase → Activity → Task — not by the source guide Parts.** Parts I/II/III are just the documents the content came from; the cycle's phases run *across* them. The content is now split so each phase is a folder, each activity is a sub-folder, and each task is its own file. For provenance, the three source guides map onto the cycle like this:
 
 | Source | Covers | Phases / Steps |
 |---|---|---|
@@ -36,29 +38,40 @@ Sahel-PCRSS-CDD-Guide/
 │   ├── 06-actors-and-roles.md        ← every actor (FC, FT, B-CDV, committees, AR, ERAR…) and their role
 │   ├── 07-cdv-structure-committees.md← B-CDVFQ + specialized committees: composition & mandate
 │   └── glossary-acronyms.md          ← all acronyms FR→EN
-├── phase-1-planning/                 ← Part 1 activities (community mobilization → PDC)
-│   ├── 01-visite-prealable.md
-│   ├── 02-ag1-orientation.md
-│   ├── 03-ag2-mise-en-place-cdv.md
-│   ├── 04-ag3-evaluation-sociale-marp.md
-│   ├── 05-identification-priorisation.md
-│   ├── 06-ag4-pdc.md
-│   ├── 07-ag5-feedback.md
-│   └── 08-suivi-rapports.md
-├── phase-2-preparation-implementation/  ← Part 2 activities
-│   ├── 01-preparation-sous-projet.md
-│   ├── 02-passation-marches.md
-│   ├── 03-mise-en-oeuvre.md
-│   ├── 04-gestion-environnementale-sociale.md
-│   ├── 05-gestion-financiere.md
-│   ├── 06-suivi-mise-en-oeuvre.md
-│   └── 07-classement-archivage.md
-├── phase-3-closure-sustainability/      ← Part 3 activities
-│   ├── 01-cloture-sous-projets.md
-│   ├── 02-genre-cloture.md
-│   ├── 03-cadre-redevabilite.md
-│   ├── 04-audit-social.md
-│   └── 05-entretien-maintenance.md
+│
+│   PHASES → ACTIVITIES → TASKS (the cycle, not the guide Parts)
+│   Each phase = folder with a README.md (phase index).
+│   Each activity = sub-folder with a README.md (overview + quick reference + task list + checklist).
+│   Each task = its own file (tache-N-*.md) holding the verbatim French source for that step.
+│
+├── phase-1-visites-prealables/              ← Steps 1–2
+│   ├── README.md
+│   ├── activite-1-visite-prealable/         (README.md + tache-1..4)
+│   └── activite-2-orientation-ag1/          (README.md + tache-1..7)
+├── phase-2-mobilisation-communautaire/      ← Steps 3–4
+│   ├── activite-1-mise-en-place-cdv-ag2/
+│   └── activite-2-evaluation-sociale-marp-ag3/
+├── phase-3-planification-villageoise/       ← Steps 5–7
+│   ├── activite-1-identification-priorisation/
+│   ├── activite-2-pdc-ag4/
+│   └── activite-3-feedback-validation-ag5/
+├── phase-4-preparation-sous-projets/        ← Steps 8–9
+│   ├── activite-1-preparation-sous-projet/
+│   └── activite-2-passation-marches/
+├── phase-5-mise-en-oeuvre/                  ← Steps 10–11
+│   ├── activite-1-mise-en-oeuvre/
+│   ├── activite-2-gestion-environnementale-sociale/
+│   ├── activite-3-gestion-financiere/
+│   ├── activite-4-suivi-mise-en-oeuvre/
+│   └── activite-5-classement-archivage/
+├── phase-6-cloture/                         ← Steps 12–14
+│   ├── activite-1-cloture-sous-projets/
+│   ├── activite-2-genre-cloture/
+│   ├── activite-3-audit-social/
+│   └── activite-4-entretien-maintenance/
+├── transversal/                            ← cross-cutting, span the whole cycle
+│   ├── suivi-rapports/                      (monitoring & reporting, the SIG/MIS)
+│   └── cadre-redevabilite/                  (accountability framework)
 ├── forms/
 │   └── forms-catalog.md              ← every form/tool code (OP, F, P, T, ES, OC) with purpose & where used
 └── tools-apps/
@@ -66,16 +79,26 @@ Sahel-PCRSS-CDD-Guide/
     └── app-emgp.md                   ← eMGP grievance app
 ```
 
+> The web app (`app/`, `scripts/build-content.mjs`) still expects the old `phase-1-planning/` etc. layout and has **not** been migrated to this new tree yet — that's a separate task.
+
 ---
 
 ## File anatomy (read this so you know where to look inside a file)
 
-Every activity file follows the same structure:
+There are three levels of file:
 
+**Phase index** — `phase-N-*/README.md`: a one-line phase summary, the steps it covers, and the list of activities (with links and task counts).
+
+**Activity README** — `phase-N-*/activite-K-*/README.md`: the fast-answer layer for an activity.
 1. **YAML frontmatter** — machine-readable metadata: `id`, `phase`, `step`, `source`, `duration`, `actors`, `forms`, `quorum`. Use this for routing and quick facts.
-2. **`## Quick reference (EN)`** — objective, when, who participates, the task checklist, forms used, key rules/thresholds. This is the fast-answer layer.
-3. **`## Contenu détaillé (FR — source)`** — the faithful French content from the guide: steps, tables, facilitation tips. This is the authoritative replica; quote from here when precision matters.
-4. **`## Cross-cutting`** — pointers to how gender, climate, GRM, and accountability apply to this activity.
+2. **Breadcrumb** — `> Phase N · Activité K · Étape … · Source …`.
+3. **`## Aperçu (FR)`** — the activity's introductory French text.
+4. **`## Quick reference (EN)`** — objective, when, who participates, key rules/thresholds.
+5. **`## Tâches de cette activité`** — ordered links to the task files.
+6. **`## Tâches du facilitateur (checklist)`** — the action checklist for the whole activity.
+7. **`## Cross-cutting`** — how gender, climate, GRM, and accountability apply.
+
+**Task file** — `phase-N-*/activite-K-*/tache-M-*.md`: one step/sub-section of the activity. Frontmatter (`id`, `phase`, `activity`, `task`, `source`) + the **faithful French source content** for that task (steps, tables, facilitation tips). This is the authoritative replica; quote from here when precision matters.
 
 ---
 
@@ -85,8 +108,8 @@ Every activity file follows the same structure:
 
 When a facilitator asks a question:
 
-1. **Locate it in the cycle.** Identify the phase/step from `00-cycle-overview.md`, then open the matching activity file. A question naming an "AG" (assemblée générale), a committee, a form code (e.g. F19, T15, P8, ES1), or a step number is a direct routing signal.
-2. **Lead with the Quick reference**, then back it with the French detail. If the user writes in French, answer in French and quote the French source. If in English, answer in English but preserve official French terms (B-CDVFQ, PDC, MGP, screening, etc.) with a short gloss.
+1. **Locate it in the cycle.** Identify the phase/step from `00-cycle-overview.md`, open the phase folder's `README.md`, then the matching activity `README.md`, then the specific `tache-*.md`. A question naming an "AG" (assemblée générale), a committee, a form code (e.g. F19, T15, P8, ES1), or a step number is a direct routing signal.
+2. **Lead with the activity Quick reference**, then back it with the French detail in the relevant task file. If the user writes in French, answer in French and quote the French source. If in English, answer in English but preserve official French terms (B-CDVFQ, PDC, MGP, screening, etc.) with a short gloss.
 3. **Be exact on hard facts.** Quorums (50% of households, 30% women), the grant amount (33,5 millions FCFA per village), tranche splits (20/50/30%), procurement thresholds (e.g. AOL ≥ 20 000 000 FCFA), petty-cash ceiling (50 000 FCFA), retention periods (10 years) — pull these verbatim, don't paraphrase loosely.
 4. **Always surface the relevant form.** If the activity produces or requires a form, name its code and point to `forms/forms-catalog.md`.
 5. **Apply the cross-cutting lenses** when relevant: does the answer need a gender requirement, a climate consideration, or a GRM step? Mention it.
@@ -94,10 +117,10 @@ When a facilitator asks a question:
 
 ### Example routings
 
-- "Comment se déroule l'élection du bureau CDV ?" → `phase-1-planning/03-ag2-mise-en-place-cdv.md`
-- "What's the quorum for a general assembly?" → `00-foundations/00-cycle-overview.md` + `phase-1-planning/02-ag1-orientation.md` (50% households, 30% women)
-- "Quels sont les seuils de passation de marché ?" → `phase-2-preparation-implementation/02-passation-marches.md`
-- "How do I run a social audit?" → `phase-3-closure-sustainability/04-audit-social.md`
+- "Comment se déroule l'élection du bureau CDV ?" → `phase-2-mobilisation-communautaire/activite-1-mise-en-place-cdv-ag2/` (tâche « Processus électoral »)
+- "What's the quorum for a general assembly?" → `00-foundations/00-cycle-overview.md` + `phase-1-visites-prealables/activite-2-orientation-ag1/` (50% households, 30% women)
+- "Quels sont les seuils de passation de marché ?" → `phase-4-preparation-sous-projets/activite-2-passation-marches/` (tâche « Types de marchés et seuils »)
+- "How do I run a social audit?" → `phase-6-cloture/activite-3-audit-social/`
 - "What is form F19?" → `forms/forms-catalog.md` (Rapport financier d'achèvement d'un sous-projet)
 - "How should I include women in priority-setting?" → `00-foundations/03-gender-social-inclusion.md` + the specific activity
 

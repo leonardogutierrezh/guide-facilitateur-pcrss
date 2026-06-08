@@ -13,7 +13,9 @@ Ce dépôt contient aussi une **application web bilingue (FR/EN)** pensée pour 
 > This repo also ships a **bilingual (FR/EN) web app** for field facilitators: simple, visual, phone-friendly, with an **AI assistant** that answers strictly from the guide content.
 
 - **Lire le guide / Read the guide** — phases et étapes en grandes cartes illustrées.
-- **Poser une question / Ask a question** — chat IA ancré dans les 32 fichiers du guide. L'assistant ne répond que depuis le guide ; il ne devine pas.
+- **Poser une question / Ask a question** — chat IA ancré dans les fichiers du guide. L'assistant ne répond que depuis le guide ; il ne devine pas.
+
+> Note : l'application web (`app/`, `scripts/build-content.mjs`) n'a pas encore été mise à jour pour la nouvelle arborescence Phases/Activités/Tâches — à faire séparément.
 
 ### Lancer en local / Run locally
 
@@ -35,14 +37,17 @@ The app is a Next.js project. Choose your AI provider with **`AI_PROVIDER`** (`a
 
 6 phases, 14 étapes. Détail complet : [`00-foundations/00-cycle-overview.md`](00-foundations/00-cycle-overview.md).
 
-| Phase | Étapes | Où |
+Le guide est organisé en **Phases → Activités → Tâches** (et non plus par Partie I/II/III du guide source). Chaque phase est un dossier ; chaque activité est un sous-dossier avec un `README.md` (aperçu, quick reference EN, liste des tâches, checklist) ; chaque tâche est un fichier individuel.
+
+| Phase | Étapes | Dossier |
 |---|---|---|
-| 1 — Visites préalables | 1–2 | [phase-1](phase-1-planning/) |
-| 2 — Mobilisation communautaire | 3–4 | [phase-1](phase-1-planning/) |
-| 3 — Planification villageoise (PDC) | 5–7 | [phase-1](phase-1-planning/) |
-| 4 — Préparation des sous-projets | 8–9 | [phase-2](phase-2-preparation-implementation/) |
-| 5 — Mise en œuvre des sous-projets | 10–11 | [phase-2](phase-2-preparation-implementation/) |
-| 6 — Clôture & durabilité | 12–14 | [phase-3](phase-3-closure-sustainability/) |
+| 1 — Visites préalables | 1–2 | [phase-1-visites-prealables](phase-1-visites-prealables/) |
+| 2 — Mobilisation communautaire | 3–4 | [phase-2-mobilisation-communautaire](phase-2-mobilisation-communautaire/) |
+| 3 — Planification villageoise (PDC) | 5–7 | [phase-3-planification-villageoise](phase-3-planification-villageoise/) |
+| 4 — Préparation des sous-projets | 8–9 | [phase-4-preparation-sous-projets](phase-4-preparation-sous-projets/) |
+| 5 — Mise en œuvre des sous-projets | 10–11 | [phase-5-mise-en-oeuvre](phase-5-mise-en-oeuvre/) |
+| 6 — Clôture & durabilité | 12–14 | [phase-6-cloture](phase-6-cloture/) |
+| Transversal — Suivi & redevabilité | — | [transversal](transversal/) |
 
 ## Concepts transversaux / Cross-cutting (apply everywhere)
 

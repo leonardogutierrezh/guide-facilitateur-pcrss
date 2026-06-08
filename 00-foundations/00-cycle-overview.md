@@ -71,4 +71,4 @@ Le cycle du projet est scindé en six (06) phases : Visite préalable · Mobilis
 | Étape 14 : Exploitation et maintenance | variable | Appui à l'exploitation durable ; préparation et mise en œuvre du plan d'entretien et de maintenance | CDV, comités de gestion, CCR, services techniques, ERAR, AR |
 
 ## Cross-cutting
-Chaque phase doit intégrer : le **genre et l'inclusion sociale** (voir `03-gender-social-inclusion.md`), le **changement climatique** (voir `04-climate-change.md` — table d'intégration par phase), le **MGP** (voir `05-grievance-mechanism-mgp.md`), et la **redevabilité** (voir `phase-3.../03-cadre-redevabilite.md`).
+Chaque phase doit intégrer : le **genre et l'inclusion sociale** (voir `03-gender-social-inclusion.md`), le **changement climatique** (voir `04-climate-change.md` — table d'intégration par phase), le **MGP** (voir `05-grievance-mechanism-mgp.md`), et la **redevabilité** (voir `transversal/cadre-redevabilite/`).

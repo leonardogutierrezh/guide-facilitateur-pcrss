@@ -47,4 +47,4 @@ Le MGP est géré par le spécialiste VBG, les points focaux dans la communauté
 > CGP — composition : 5 membres dont au moins la moitié de femmes : 1 représentant des conseillers villageois (président), 1 représentant des jeunes, 1 représentante des femmes, 1 représentant des autorités religieuses, 1 point focal EAS/HS. Voir [Structure CDV & comités](07-cdv-structure-committees.md).
 
 ## Cross-cutting
-Application : voir [Application eMGP](../tools-apps/app-emgp.md). Formulaires : **ES8** (PV de mise en place du CGP), **ES9** (Fiche d'enregistrement de la plainte) — voir [catalogue](../forms/forms-catalog.md). Le MGP est l'un des mécanismes de [redevabilité sociale](../phase-3-closure-sustainability/03-cadre-redevabilite.md).
+Application : voir [Application eMGP](../tools-apps/app-emgp.md). Formulaires : **ES8** (PV de mise en place du CGP), **ES9** (Fiche d'enregistrement de la plainte) — voir [catalogue](../forms/forms-catalog.md). Le MGP est l'un des mécanismes de [redevabilité sociale](../transversal/cadre-redevabilite/README.md).
