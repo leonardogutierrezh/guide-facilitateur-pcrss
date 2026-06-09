@@ -9,6 +9,7 @@ import { useLang } from "@/components/LanguageProvider";
 import { t } from "@/lib/i18n";
 import { findEntry, leafLabel } from "@/lib/nav";
 import { pairOf, rgba } from "@/lib/colors";
+import { stripHeader, prepareOverview } from "@/lib/md";
 
 export interface FlowStep {
   slug: string;
@@ -27,35 +28,6 @@ function prefersReduced(): boolean {
     typeof window !== "undefined" &&
     window.matchMedia("(prefers-reduced-motion: reduce)").matches
   );
-}
-
-/** Drop a leading H1 title and the `> Phase · …` breadcrumb line from a body,
- *  since the flow renders its own header for each step. */
-function stripHeader(body: string): string {
-  const lines = body.split("\n");
-  let i = 0;
-  while (i < lines.length && lines[i].trim() === "") i++;
-  if (i < lines.length && /^#\s/.test(lines[i])) i++;
-  while (i < lines.length && lines[i].trim() === "") i++;
-  if (i < lines.length && /^>\s/.test(lines[i])) i++;
-  return lines.slice(i).join("\n").trim();
-}
-
-/** Build the overview step: the activity README minus its own header and minus
- *  the "Tâches de cette activité" list (those become the wizard steps). */
-function prepareOverview(body: string): string {
-  const stripped = stripHeader(body);
-  const lines = stripped.split("\n");
-  const out: string[] = [];
-  let skipping = false;
-  for (const line of lines) {
-    const isH2 = /^##\s/.test(line);
-    if (isH2) {
-      skipping = /t[âa]ches de cette activit|tasks in this activity/i.test(line);
-    }
-    if (!skipping) out.push(line);
-  }
-  return out.join("\n").trim();
 }
 
 export function ActivityFlow({
@@ -297,14 +269,23 @@ export function ActivityFlow({
             <article key={step} className="step-in card mt-4 rounded-[1.6rem] p-5 sm:p-7">
               <div className="mb-3 flex items-center gap-2">
                 <span
-                  className="flex h-9 w-9 items-center justify-center rounded-xl text-lg text-white shadow-sm"
+                  className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl text-lg text-white shadow-sm"
                   style={{ background: `linear-gradient(135deg, ${from}, ${to})` }}
                 >
                   {cur.kind === "overview" ? "📋" : cur.num}
                 </span>
-                <h2 className="text-lg font-extrabold tracking-tight text-[var(--ink)]">
+                <h2 className="flex-1 text-lg font-extrabold tracking-tight text-[var(--ink)]">
                   {cur.label}
                 </h2>
+                {cur.kind === "task" && (
+                  <Link
+                    href={`/guide/${steps[cur.num - 1]?.slug}`}
+                    className="shrink-0 rounded-full px-3 py-1.5 text-xs font-extrabold transition active:scale-95"
+                    style={{ background: rgba(to, 0.12), color: to }}
+                  >
+                    {t("openDetail", lang)} ↗
+                  </Link>
+                )}
               </div>
               <Markdown baseSlug={cur.kind === "overview" ? slug : steps[cur.num - 1]?.slug ?? slug}>
                 {cur.body}

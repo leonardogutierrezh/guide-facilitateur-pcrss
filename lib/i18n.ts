@@ -120,6 +120,15 @@ export const UI = {
   formsWord: { fr: "Formulaires", en: "Forms" },
   readingView: { fr: "Tout lire", en: "Read all" },
   guidedView: { fr: "Pas à pas", en: "Step by step" },
+
+  // ---- Task detail view ----
+  taskWord: { fr: "Tâche", en: "Task" },
+  howTo: { fr: "Comment réaliser cette tâche", en: "How to perform this task" },
+  openDetail: { fr: "Détail", en: "Detail" },
+  prevTask: { fr: "Tâche précédente", en: "Previous task" },
+  nextTask: { fr: "Tâche suivante", en: "Next task" },
+  backToActivity: { fr: "Revoir l'activité", en: "Back to activity" },
+  seeInFlow: { fr: "Voir dans le parcours", en: "See in the flow" },
 };
 
 export type UIKey = keyof typeof UI;

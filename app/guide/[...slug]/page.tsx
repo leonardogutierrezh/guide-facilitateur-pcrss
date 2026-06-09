@@ -3,6 +3,7 @@ import { allFiles, getFile } from "@/lib/guide";
 import { findEntry } from "@/lib/nav";
 import { GuideArticle } from "./GuideArticle";
 import { ActivityFlow } from "./ActivityFlow";
+import { TaskView } from "./TaskView";
 
 export function generateStaticParams() {
   return allFiles.map((f) => ({ slug: f.slug.split("/") }));
@@ -14,8 +15,21 @@ export default async function GuidePage({ params }: { params: Promise<{ slug: st
   const file = getFile(joined);
   if (!file) notFound();
 
-  // An activity README that has task children → guided step-by-step flow.
   const entry = findEntry(joined);
+
+  // A task file → dedicated task detail view (how to perform it).
+  if (entry?.task) {
+    const fm = file.frontmatter as Record<string, unknown>;
+    return (
+      <TaskView
+        slug={file.slug}
+        body={file.body}
+        meta={{ source: fm.source as string | undefined }}
+      />
+    );
+  }
+
+  // An activity README that has task children → guided step-by-step flow.
   const children = entry && !entry.task ? entry.activity.children ?? [] : [];
   if (entry && !entry.task && children.length > 0) {
     const steps = children.map((c) => ({ slug: c.slug, body: getFile(c.slug)?.body ?? "" }));
