@@ -6,36 +6,12 @@ import { NAV, sectionLabel, sectionSub, leafLabel } from "@/lib/nav";
 import { useLang } from "@/components/LanguageProvider";
 import { LangToggle } from "@/components/LangToggle";
 import { t } from "@/lib/i18n";
+import { pairOf, rgba } from "@/lib/colors";
 
 /** The 6 numbered phases are the journey path; everything else (transversal,
  *  foundations, forms, apps) becomes "resources" at the end. */
 const PHASES = NAV.filter((s) => s.id.startsWith("phase-"));
 const EXTRAS = NAV.filter((s) => !s.id.startsWith("phase-"));
-
-/** Hex values for the Tailwind palette tokens used in the section gradients,
- *  so we can drive runtime tints/strokes without hard-coding per section. */
-const TW: Record<string, string> = {
-  "green-500": "#22c55e", "green-600": "#16a34a",
-  "lime-500": "#84cc16",
-  "amber-500": "#f59e0b", "amber-600": "#d97706",
-  "orange-500": "#f97316", "orange-600": "#ea580c",
-  "rose-500": "#f43f5e", "red-600": "#dc2626",
-  "sky-500": "#0ea5e9", "blue-600": "#2563eb",
-  "teal-500": "#14b8a6", "cyan-600": "#0891b2",
-  "purple-500": "#a855f7", "fuchsia-600": "#c026d6",
-  "indigo-500": "#6366f1", "violet-600": "#7c3aed",
-};
-
-function pairOf(color: string): [string, string] {
-  const from = color.match(/from-([a-z]+-\d+)/)?.[1] ?? "";
-  const to = color.match(/to-([a-z]+-\d+)/)?.[1] ?? "";
-  return [TW[from] ?? "#b14a1f", TW[to] ?? "#8a3713"];
-}
-
-function rgba(hex: string, a: number): string {
-  const n = parseInt(hex.slice(1), 16);
-  return `rgba(${(n >> 16) & 255}, ${(n >> 8) & 255}, ${n & 255}, ${a})`;
-}
 
 function prefersReduced(): boolean {
   return (

@@ -106,6 +106,20 @@ export const UI = {
   resourcesWord: { fr: "Ressources & outils", en: "Resources & tools" },
   classicView: { fr: "Vue classique", en: "Classic view" },
   startJourney: { fr: "Commencer le parcours", en: "Start the journey" },
+
+  // ---- Guided activity flow ----
+  overview: { fr: "Aperçu", en: "Overview" },
+  stepWord: { fr: "Étape", en: "Step" },
+  ofWord: { fr: "sur", en: "of" },
+  previous: { fr: "Précédent", en: "Previous" },
+  next: { fr: "Suivant", en: "Next" },
+  nextActivity: { fr: "Activité suivante", en: "Next activity" },
+  finishActivity: { fr: "Terminer", en: "Finish" },
+  sourceWord: { fr: "Source", en: "Source" },
+  actorsWord: { fr: "Acteurs", en: "Actors" },
+  formsWord: { fr: "Formulaires", en: "Forms" },
+  readingView: { fr: "Tout lire", en: "Read all" },
+  guidedView: { fr: "Pas à pas", en: "Step by step" },
 };
 
 export type UIKey = keyof typeof UI;
