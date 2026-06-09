@@ -5,6 +5,11 @@ const config: Config = {
     "./app/**/*.{ts,tsx}",
     "./components/**/*.{ts,tsx}",
     "./lib/**/*.{ts,tsx}",
+    // Section gradient classes (e.g. "from-green-500 to-green-600") are stored
+    // as dynamic strings in this generated file, not written literally in JSX.
+    // Without scanning it, Tailwind purges them and phase headers lose their
+    // background — leaving white text on a near-white card.
+    "./lib/guide-data.json",
   ],
   theme: {
     extend: {
