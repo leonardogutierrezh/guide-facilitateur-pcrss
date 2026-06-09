@@ -24,7 +24,7 @@ export const viewport: Viewport = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="fr" className={jakarta.variable}>
+    <html lang="fr" className={`no-js ${jakarta.variable}`}>
       <body className="min-h-screen antialiased">
         <LanguageProvider>{children}</LanguageProvider>
       </body>

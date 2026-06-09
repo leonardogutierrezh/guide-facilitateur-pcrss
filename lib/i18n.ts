@@ -73,6 +73,39 @@ export const UI = {
     fr: "Chat indisponible — configuration manquante",
     en: "Chat unavailable — setup needed",
   },
+
+  // ---- Immersive journey (scrollytelling) ----
+  discoverJourney: {
+    fr: "✨ Découvrir le parcours interactif",
+    en: "✨ Discover the interactive journey",
+  },
+  discoverJourneySub: {
+    fr: "Une façon immersive de traverser tout le cycle",
+    en: "An immersive way to travel the whole cycle",
+  },
+  journeyKicker: { fr: "Le parcours", en: "The journey" },
+  journeyTitle: {
+    fr: "Le voyage du facilitateur",
+    en: "The facilitator's journey",
+  },
+  journeyLead: {
+    fr: "Faites défiler pour traverser les 6 phases du cycle communautaire — une étape à la fois.",
+    en: "Scroll to travel through the 6 phases of the community cycle — one step at a time.",
+  },
+  journeyScroll: { fr: "Faites défiler", en: "Scroll to begin" },
+  phaseOf: { fr: "Phase", en: "Phase" },
+  openPhase: { fr: "Ouvrir cette phase", en: "Open this phase" },
+  journeyOutroTitle: {
+    fr: "Vous avez parcouru tout le cycle 🎉",
+    en: "You've traveled the whole cycle 🎉",
+  },
+  journeyOutroLead: {
+    fr: "Plongez plus loin, ou posez directement votre question.",
+    en: "Dive deeper, or just ask your question.",
+  },
+  resourcesWord: { fr: "Ressources & outils", en: "Resources & tools" },
+  classicView: { fr: "Vue classique", en: "Classic view" },
+  startJourney: { fr: "Commencer le parcours", en: "Start the journey" },
 };
 
 export type UIKey = keyof typeof UI;

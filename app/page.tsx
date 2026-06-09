@@ -28,8 +28,27 @@ export default function HomePage() {
         </p>
       </section>
 
+      {/* Immersive journey banner */}
+      <section className="mx-auto mt-8 max-w-3xl px-4">
+        <Link
+          href="/journey"
+          className="sheen pressable rise rise-1 group flex items-center gap-4 overflow-hidden rounded-[1.75rem] bg-gradient-to-br from-clay-600 via-rose-500 to-orange-500 p-5 text-white shadow-[0_18px_44px_-16px_rgba(177,74,31,0.7)]"
+        >
+          <div className="float flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-white/20 text-3xl backdrop-blur">
+            🧭
+          </div>
+          <div className="min-w-0 flex-1">
+            <div className="text-lg font-extrabold leading-tight tracking-tight">
+              {t("discoverJourney", lang)}
+            </div>
+            <div className="mt-0.5 text-sm text-white/90">{t("discoverJourneySub", lang)}</div>
+          </div>
+          <span className="shrink-0 text-2xl transition group-hover:translate-x-1">→</span>
+        </Link>
+      </section>
+
       {/* Two big actions */}
-      <section className="mx-auto mt-8 grid max-w-3xl grid-cols-1 gap-4 px-4 sm:grid-cols-2">
+      <section className="mx-auto mt-4 grid max-w-3xl grid-cols-1 gap-4 px-4 sm:grid-cols-2">
         <Link
           href="/chat"
           className="sheen pressable rise rise-2 group rounded-[1.75rem] bg-gradient-to-br from-clay-500 to-clay-700 p-6 text-white shadow-[0_18px_40px_-16px_rgba(177,74,31,0.6)]"
